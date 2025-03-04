@@ -1,1 +1,15 @@
+1. If trigger must be from slack channel
+- Sample command
+- Regions
+- components 
 
+2. Components must be fetched from file or we can integrate the data in the script itself
+
+3. If we need to parse the data from a file
+- please share the sample file data/format
+- storage account and path details
+- do we need to create this file and upload somewhere maybe content/comman directory
+
+4.Do we need to send confirmation on slack & pagerduty
+- slack channel and usernames
+- pagerduty service and incident id
