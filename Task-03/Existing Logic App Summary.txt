@@ -1,0 +1,31 @@
+Existing logicApp logic:
+
+### **Summary of the Logic App Workflow**  
+
+This **Logic App** automates the process of handling maintenance notifications for different system components. It is triggered by an **HTTP request** containing command parameters and follows these key steps:  
+
+1. **Command Processing:**  
+   - Extracts command details (e.g., `/pb_website_notify`, `/pb_website_mstart`).  
+   - Validates whether the request is coming from an allowed Slack channel.  
+
+2. **Notification Handling:**  
+   - Fetches maintenance messages from `notification-messages.json` (stored in Azure Blob Storage).  
+   - Filters messages based on the affected **component**.  
+   - Formats and updates `notify.json` to display a **notification banner** on the website.  
+
+3. **Maintenance Mode Activation (if applicable):**  
+   - If the command is `/pb_website_mstart`, it calculates maintenance duration, start and end times.  
+   - Stores these details in Azure Blob Storage (`maint-times.json`).  
+
+4. **Slack & Incident Alerts:**  
+   - Sends Slack notifications to inform teams about the maintenance.  
+   - If an **unplanned outage** occurs, it creates an **incident in PagerDuty** to trigger response workflows.  
+
+5. **Azure Blob Storage Updates:**  
+   - Writes maintenance details (formatted JSON) to `notify.json`.  
+   - If required, modifies **kill.json** to put the site into maintenance mode.  
+
+### **Outcome**  
+This Logic App **automates system maintenance updates**, ensuring real-time notifications on the website and within the organization. 🚀  
+
+
